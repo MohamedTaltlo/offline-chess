@@ -1,1 +1,0 @@
-import {chooseMove} from './engine.js';self.onmessage=e=>{try{self.postMessage({move:chooseMove(e.data.fen,e.data.level)});}catch(error){self.postMessage({error:String(error)});}};

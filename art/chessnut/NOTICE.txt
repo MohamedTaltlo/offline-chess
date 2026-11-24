@@ -1,0 +1,1 @@
+Chessnut chess pieces by Alexis Luengas (LexLuengas), Apache License 2.0. Source: https://github.com/LexLuengas/chessnut-pieces ; SVGs mirrored by https://github.com/lichess-org/lila/tree/master/public/piece/chessnut . Rasterized at build time for native Android drawing; SVG artwork retained unchanged.

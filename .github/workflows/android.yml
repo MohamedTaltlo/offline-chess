@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Native Android APK
 on:
   push:
     branches: [main]
@@ -10,16 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm install --no-audit --no-fund
-      - run: npm test
-      - run: npm run build
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+      - name: Test native chess engine
+        run: |
+          mkdir -p /tmp/chess
+          javac -d /tmp/chess app/src/main/java/com/mt/chess/Chess.java tests/NativeChessTest.java
+          java -cp /tmp/chess com.mt.chess.NativeChessTest
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render bundled chess artwork
+        run: |
+          python -m pip install cairosvg==2.7.1
+          python scripts/render_pieces.py
       - name: Prepare Android SDK
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
@@ -41,4 +47,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="build-${GITHUB_RUN_NUMBER}"
-          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 1.0.0 (build ${GITHUB_RUN_NUMBER})" --notes "Offline Android APK. Fixed board, undo, local multiplayer and computer." --latest
+          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 2.0.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Native Android rewrite, modern chess pieces and icon, system bar fix, fixed board and undo. Uninstall old build if Android reports a signing mismatch." --latest
