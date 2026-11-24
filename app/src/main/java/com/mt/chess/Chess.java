@@ -57,6 +57,7 @@ final class Chess {
  }return a;}
  ArrayList<Move> legal(){ArrayList<Move>a=new ArrayList<>();int side=turn;for(Move m:pseudo()){State s=make(m);boolean ok=!check(side);restore(s);if(ok)a.add(m);}return a;}
  String key(){StringBuilder s=new StringBuilder();for(int p:b)s.append((char)(p+65));int legalEp=-1;if(ep>=0){for(Move m:pseudo())if(m.to==ep&&Math.abs(b[m.from])==P&&m.from%8!=m.to%8){int side=turn;State st=make(m);boolean ok=!check(side);restore(st);if(ok){legalEp=ep;break;}}}return s.append('/').append(turn).append('/').append(rights).append('/').append(legalEp).toString();}
+ int castleTarget(int from,int tapped){if(from<0||from>=64||tapped<0||tapped>=64||b[from]!=turn*K||b[tapped]!=turn*R||from/8!=tapped/8)return tapped;for(Move m:legal())if(m.from==from&&Math.abs(m.to-from)==2&&tapped==(m.to>from?from+3:from-4))return m.to;return tapped;}
  boolean play(Move m){ArrayList<Move> legal=legal();Move chosen=null;for(Move x:legal)if(x.from==m.from&&x.to==m.to&&x.promo==m.promo){chosen=x;break;}if(chosen==null)return false;m=chosen;
   int kind=Math.abs(b[m.from]),capt=b[m.to];if(kind==P&&m.to==ep&&capt==0&&m.from%8!=m.to%8)capt=-turn*P;
   String san;if(kind==K&&Math.abs(m.to-m.from)==2)san=m.to>m.from?"O-O":"O-O-O";else{

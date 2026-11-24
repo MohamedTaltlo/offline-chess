@@ -47,4 +47,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="build-${GITHUB_RUN_NUMBER}"
-          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 2.0.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Native Android rewrite, modern chess pieces and icon, system bar fix, fixed board and undo. Uninstall old build if Android reports a signing mismatch." --latest
+          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 2.1.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Refined native UI, castling by tapping king and rook, simultaneous castling animation, piece captures, four board themes, fixed board and undo. Uninstall old build if Android reports a signing mismatch." --latest
