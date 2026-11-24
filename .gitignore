@@ -1,0 +1,7 @@
+.gradle/
+**/build/
+node_modules/
+local.properties
+app/src/main/assets/game.js
+app/src/main/assets/worker.js
+app/src/main/assets/licenses/

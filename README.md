@@ -1,3 +1,2 @@
 # MT Chess
-
-Offline Android chess: play against the computer or a friend on one device. Android APK builds through GitHub Actions.
+Android chess fully offline. Local two-player or computer (four difficulty levels), fixed board, legal move hints, promotion, undo, and local match recovery. No INTERNET permission. Build: npm install && npm test && npm run build && gradle assembleDebug (JDK 17, Android SDK 35, Gradle 8.9). Download the debug-signed APK from Releases. Chess rules use chess.js (BSD-2-Clause). AI is a local material/position minimax engine, not Stockfish.
