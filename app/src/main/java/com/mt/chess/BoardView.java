@@ -20,7 +20,7 @@ final class BoardView extends View {
  @Override protected void onMeasure(int w,int h){int width=MeasureSpec.getSize(w);setMeasuredDimension(width,width);}
  void update(Chess g,int sel,boolean show,boolean can,int style){game=g;selected=sel;hints=show;enabled=can;theme=Math.max(0,Math.min(2,style));legal=sel<0?new ArrayList<>():g.legal();int n=g.history.size();lastFrom=n==0?-1:g.history.get(n-1).from;lastTo=n==0?-1:g.history.get(n-1).to;check=-1;if(g.check(g.turn))for(int i=0;i<64;i++)if(g.b[i]==g.turn*Chess.K)check=i;invalidate();}
  void animateMove(int from,int to,int piece){if(animator!=null)animator.cancel();animFrom=from;animTo=to;animPiece=piece;fraction=0;animator=ValueAnimator.ofFloat(0,1);animator.setDuration(145);animator.addUpdateListener(a->{fraction=(float)a.getAnimatedValue();invalidate();});animator.start();}
- void clearAnimation(){if(animator!=null)animator.cancel();fraction=1;invalidate();}
+ void clearPieceAnimation(){if(animator!=null)animator.cancel();fraction=1;invalidate();}
  void fill(Canvas c,int color,float l,float t,float r,float b){p.setColor(color);p.setStyle(Paint.Style.FILL);c.drawRect(l,t,r,b,p);}
  void piece(Canvas c,int val,float x,float y,float scale){Bitmap b=images[val+6];if(b==null)return;float inset=cell*(1-scale)/2;dst.set(x+inset,y+inset,x+cell-inset,y+cell-inset);p.setColor(Color.WHITE);p.setAlpha(255);p.setFilterBitmap(true);c.drawBitmap(b,null,dst,p);}
  @Override protected void onDraw(Canvas c){super.onDraw(c);if(game==null)return;size=Math.min(getWidth(),getHeight());cell=size/8f;left=(getWidth()-size)/2;top=(getHeight()-size)/2;Path clip=new Path();clip.addRoundRect(new RectF(left,top,left+size,top+size),cell*.17f,cell*.17f,Path.Direction.CW);c.save();c.clipPath(clip);
