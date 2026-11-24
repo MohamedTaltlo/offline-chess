@@ -2,3 +2,6 @@
 **/build/
 local.properties
 app/src/main/assets/pieces/
+
+app/src/main/res/drawable-nodpi/brand_*.png
+app/src/main/res/drawable-nodpi/ui_*.png

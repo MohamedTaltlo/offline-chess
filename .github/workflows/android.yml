@@ -26,6 +26,7 @@ jobs:
         run: |
           python -m pip install cairosvg==2.7.1
           python scripts/render_pieces.py
+          python scripts/render_brand.py
       - name: Prepare Android SDK
         run: |
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
@@ -47,4 +48,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="build-${GITHUB_RUN_NUMBER}"
-          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 2.1.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Refined native UI, castling by tapping king and rook, simultaneous castling animation, piece captures, four board themes, fixed board and undo. Uninstall old build if Android reports a signing mismatch." --latest
+          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 3.0.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Premium emerald and gold icon artwork, updated native action buttons, two-player setup, fixed board, four levels, castling and undo. Offline. Uninstall old build if Android reports a signing mismatch." --latest
