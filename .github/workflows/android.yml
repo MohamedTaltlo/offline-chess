@@ -48,4 +48,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="build-${GITHUB_RUN_NUMBER}"
-          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 3.1.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "New original shaded Staunton chess pieces, simplified header, hidden move history. Native Android, offline, castling and undo preserved." --latest
+          gh release create "$TAG" MT-Chess.apk --target "$GITHUB_SHA" --title "MT Chess 3.2.0 Native (build ${GITHUB_RUN_NUMBER})" --notes "Metal and gold 3D chess pieces with premium framed board and gradient tiles. Native Android, fixed board, offline, castling and undo." --latest

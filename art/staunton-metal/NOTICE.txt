@@ -1,0 +1,1 @@
+Staunton-Pieces, Trimmed renders, copyright 2014 clarkerubber, MIT. Source: https://github.com/clarkerubber/Staunton-Pieces/tree/master/Renders/Trimmed/Scaled/180 . Cropped and padded during Android build.
