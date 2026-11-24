@@ -3,6 +3,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowInsets;
 import android.webkit.WebView;
+import android.webkit.WebChromeClient;
 import android.webkit.WebViewClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -17,6 +18,7 @@ public class MainActivity extends Activity {
   web.getSettings().setAllowFileAccess(false);
   web.getSettings().setAllowContentAccess(false);
   WebViewAssetLoader loader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this)).build();
+  web.setWebChromeClient(new WebChromeClient());
   web.setWebViewClient(new WebViewClient(){
    @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest req) {
     WebResourceResponse res = loader.shouldInterceptRequest(req.getUrl());
