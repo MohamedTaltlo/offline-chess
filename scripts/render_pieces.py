@@ -13,7 +13,8 @@ boxes=[im.getchannel('A').point(lambda x:255 if x>12 else 0).getbbox() for im in
 box=(min(v[0] for v in boxes),min(v[1] for v in boxes),max(v[2] for v in boxes),max(v[3] for v in boxes))
 for name,im in images.items():
     cropped=im.crop(box)
-    cropped.thumbnail((308,308),Image.Resampling.LANCZOS)
+    scale=308/max(cropped.size)
+    cropped=cropped.resize((round(cropped.width*scale),round(cropped.height*scale)),Image.Resampling.LANCZOS)
     canvas=Image.new('RGBA',(320,320))
     canvas.alpha_composite(cropped,((320-cropped.width)//2,(320-cropped.height)//2))
     canvas.save(out/(name+'.png'),optimize=True)
